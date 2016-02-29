@@ -2,11 +2,6 @@ package leap
 
 import "testing"
 
-// Define a function IsLeapYear(int) bool.
-//
-// Also define a testVersion with a value that matches
-// the targetTestVersion here.
-
 const targetTestVersion = 2
 
 func TestLeapYears(t *testing.T) {
