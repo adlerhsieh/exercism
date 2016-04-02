@@ -2,7 +2,7 @@ package leap
 
 const testVersion = 2
 
-// Check if a year is a leap year
+// Check if a year is a leap year.
 func IsLeapYear(year int) bool {
 	switch {
 	case year%400 == 0:
