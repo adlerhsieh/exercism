@@ -12,41 +12,27 @@ type Clock struct {
 }
 
 func New(hour, minute int) Clock {
-	cm := minute
-	ch := hour
-	modifier := 0
-	for cm > 59 {
-		modifier += 1
-		cm -= 60
+	for minute > 59 {
+		hour += 1
+		minute -= 60
 	}
-	for cm < 0 {
-		modifier -= 1
-		cm += 60
+	for minute < 0 {
+		hour -= 1
+		minute += 60
 	}
-	ch = ch + modifier
-	for ch > 23 {
-		ch -= 24
+	for hour > 23 {
+		hour -= 24
 	}
-	for ch < 0 {
-		ch += 24
+	for hour < 0 {
+		hour += 24
 	}
-	return Clock{ch, cm}
+	return Clock{hour, minute}
 }
 
 func (c Clock) String() string {
-	h := fmt.Sprintf("%d", c.Hour)
-	if len(h) == 1 {
-		h = "0" + h
-	}
-	m := fmt.Sprintf("%d", c.Minute)
-	if len(m) == 1 {
-		m = "0" + m
-	}
-	return h + ":" + m
+	return fmt.Sprintf("%0.2d:%0.2d", c.Hour, c.Minute)
 }
 
 func (c Clock) Add(minutes int) Clock {
-	ch := c.Hour
-	cm := c.Minute + minutes
-	return New(ch, cm)
+	return New(c.Hour, c.Minute+minutes)
 }
